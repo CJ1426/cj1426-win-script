@@ -5,5 +5,3 @@ if ($adminCheck) {
 } else {
 	write-host "you are not admin"
 }
-
-read-host

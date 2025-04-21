@@ -1,0 +1,1 @@
+add-computer -DomainName "your.domain" -OUPath "OU=yourOU,DC=your,DC=domain" -NewName "computer name" -Credential (Get-Credential) -Restart
