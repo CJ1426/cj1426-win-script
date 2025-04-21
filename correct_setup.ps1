@@ -36,3 +36,6 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\P
 
 <#hide recommend session in start menu#>
 Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\Explorer" -Name HideRecommendedSection -Value 1
+
+<#use old context menu#>
+New-Item -Path "HKLM:\SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InProcServer32" -Force
