@@ -71,6 +71,10 @@ DISM /Online /Disable-Feature /FeatureName:Recall /Quiet /NoRestart
 <#disable stickykeys#>
 Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name Flags -Value 510
 
+#disable startmenu search suggesion
+New-Item -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Force
+Set-ItemProperty -Path "HKCUL:\SOFTWARE\Policies\Microsoft\Windows\Explorer\" -Name DisableSearchBoxSuggestions -value 1 -force
+
 # windows defender stop sample
 Set-MpPreference -SubmitSamplesConsent 2 -ErrorAction SilentlyContinue
 
@@ -104,3 +108,5 @@ public class User32 {
 $WM_SETTINGCHANGE = 0x001A
 $HWND_BROADCAST = [IntPtr]::Zero
 $SendMessage = [User32]::SendMessageW($HWND_BROADCAST, $WM_SETTINGCHANGE, 0, 0)
+
+Stop-Process -name explorer -force
