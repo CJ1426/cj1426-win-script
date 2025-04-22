@@ -70,3 +70,6 @@ DISM /Online /Disable-Feature /FeatureName:Recall /Quiet /NoRestart
 
 <#disable stickykeys#>
 Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name Flags -Value 510
+
+# windows defender stop sample
+Set-MpPreference -SubmitSamplesConsent 2 -ErrorAction SilentlyContinue
