@@ -73,3 +73,34 @@ Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name Flag
 
 # windows defender stop sample
 Set-MpPreference -SubmitSamplesConsent 2 -ErrorAction SilentlyContinue
+
+#disable effect 
+set-ItemProperty -path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" -name VisualFXSetting -value 2
+
+#set wallpaper to black
+set-ItemProperty -path "HKCU:\Control Panel\Desktop" -name wallpaper -value ""
+
+#disable transperency effect
+set-ItemProperty -path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -name EnableTransparency -value 0
+
+#disable accentcolor taskbar and title
+set-ItemProperty -path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -name ColorPrevalence -value 0
+set-ItemProperty -path "HKCU:\SOFTWARE\Microsoft\Windows\DWM" -name ColorPrevalence -value 0
+set-ItemProperty -path "HKCU:\SOFTWARE\Microsoft\Windows\DWM" -name EnableWindowColorization -value 0
+
+#update setting
+Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+
+public class User32 {
+    [DllImport("user32.dll")]
+    public static extern int SendMessageW(IntPtr hWnd, int msg, int wParam, int lParam);
+    [DllImport("user32.dll", CharSet = CharSet.Auto)]
+    public static extern IntPtr FindWindow(string className, string windowName);
+}
+"@
+
+$WM_SETTINGCHANGE = 0x001A
+$HWND_BROADCAST = [IntPtr]::Zero
+$SendMessage = [User32]::SendMessageW($HWND_BROADCAST, $WM_SETTINGCHANGE, 0, 0)
