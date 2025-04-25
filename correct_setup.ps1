@@ -110,3 +110,13 @@ $HWND_BROADCAST = [IntPtr]::Zero
 $SendMessage = [User32]::SendMessageW($HWND_BROADCAST, $WM_SETTINGCHANGE, 0, 0)
 
 Stop-Process -name explorer -force
+
+#delay feature update to 1 year
+Set-ItemProperty -path "HKLM:\software\Policies\Microsoft\Windows\WindowsUpdate\" -name DeferFeatureUpdates -value 1
+Set-ItemProperty -path "HKLM:\software\Policies\Microsoft\Windows\WindowsUpdate\" -name DeferFeatureUpdatesPeriodInDays -value 365
+
+#delay Quality Update to 4 days
+Set-ItemProperty -path "HKLM:\software\Policies\Microsoft\Windows\WindowsUpdate\" -name DeferQualityUpdates -value 1
+Set-ItemProperty -path "HKLM:\software\Policies\Microsoft\Windows\WindowsUpdate\" -name DeferQualityUpdatesPeriodInDays -value 4
+
+gpupdate /force

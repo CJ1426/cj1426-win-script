@@ -1364,8 +1364,8 @@ $ser = @(
 
       },
       @{
-        name= "wuauserv"
-        starttype= "Manual"
+        name= "wuauserv" #windows update
+        starttype= "Disabled"
       },
       @{
         name= "wudfsvc"
