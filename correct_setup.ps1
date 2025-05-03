@@ -56,16 +56,16 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\Maps" -Name AutoUpdateEnabled -Value 0
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\CloudContent" -Name DisableWindowsConsumerFeatures -Value 1
 
 <#disable wifi sence#>
-Set-ItemProperty -Path "HMLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name Value -Value 0
-Set-ItemProperty -Path "HMLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name Value -Value 0
+Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowWiFiHotSpotReporting" -Name Value -Value 0
+Set-ItemProperty -Path "HKLM:\Software\Microsoft\PolicyManager\default\WiFi\AllowAutoConnectToWiFiSenseHotspots" -Name Value -Value 0
 
 <#remove copilot#>
-Set-ItemProperty -Path "HMLM:\Software\Policies\Microsoft\Windows\WindowsCopilot" -Name TurnOffWindowsCopilot -Value 1
-Set-ItemProperty -Path "HMCU:\Software\Policies\Microsoft\Windows\WindowsCopilot" -Name TurnOffWindowsCopilot -Value 1
+Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsCopilot" -Name TurnOffWindowsCopilot -Value 1
+Set-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Windows\WindowsCopilot" -Name TurnOffWindowsCopilot -Value 1
 dism /online /remove-package /package-name:Microsoft.Windows.Copilot
 
 <#disable recall#>
-Set-ItemProperty -Path "HMLM:\Software\Policies\Microsoft\Windows\WindowsAI" -Name DisableAIDataAnalysis -Value 1
+Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsAI" -Name DisableAIDataAnalysis -Value 1
 DISM /Online /Disable-Feature /FeatureName:Recall /Quiet /NoRestart
 
 <#disable stickykeys#>
@@ -73,7 +73,7 @@ Set-ItemProperty -Path "HKCU:\Control Panel\Accessibility\StickyKeys" -Name Flag
 
 #disable startmenu search suggesion
 New-Item -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -Force
-Set-ItemProperty -Path "HKCUL:\SOFTWARE\Policies\Microsoft\Windows\Explorer\" -Name DisableSearchBoxSuggestions -value 1 -force
+Set-ItemProperty -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer\" -Name DisableSearchBoxSuggestions -value 1 -force
 
 # windows defender stop sample
 Set-MpPreference -SubmitSamplesConsent 2 -ErrorAction SilentlyContinue
