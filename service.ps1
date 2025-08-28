@@ -745,7 +745,7 @@ $ser = @(
       },
       @{
         name= "SysMain"
-        starttype= "Automatic"
+        starttype= "Disabled"
 
       },
       @{

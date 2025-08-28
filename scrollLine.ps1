@@ -1,0 +1,1 @@
+Set-ItemProperty -Path "HKCU:\Control Panel\Desktop" -name WheelScrollLines -value 3
