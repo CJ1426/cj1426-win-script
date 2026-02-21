@@ -1,0 +1,8 @@
+Get-NetAdapter | select Name, InterfaceDescription, InterfaceGuid
+
+go to "Computer\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}\"
+
+search for your interface and create new String value name "NetworkAddress"
+#Reminder: The second digit must be 2, 6, A, or E.
+
+disable and enable that network interface

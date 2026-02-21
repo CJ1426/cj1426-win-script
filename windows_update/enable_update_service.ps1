@@ -1,15 +1,10 @@
-stop-service -name UsoSvc
-stop-service -name wuauserv
-set-service -name UsoSvc -startuptype Disabled
-set-service -name wuauserv -startuptype Disabled
-
 function rename-mydll {
 	param(
 		$name
 	)
 	
-	$OGpath="C:\Windows\System32\${name}.dll"
-	$Bakpath="C:\Windows\System32\${name}_Bak.dll"
+	$Bakpath="C:\Windows\System32\${name}.dll"
+	$OGpath="C:\Windows\System32\${name}_Bak.dll"
 	
 	if (Test-Path -Path $OGpath) {
 		Start-Process -FilePath "takeown.exe" -ArgumentList "/F ${OGpath}" -wait
@@ -22,3 +17,11 @@ function rename-mydll {
 
 rename-mydll -name "WaaSMedicSvc"
 rename-mydll -name "wuaueng"
+
+set-service -name UsoSvc -startuptype Maunal
+set-service -name wuauserv -startuptype Manual
+set-service -name BITS -startuptype Manual
+
+start-service -name UsoSvc
+start-service -name wuauserv
+start-service -name BITS
