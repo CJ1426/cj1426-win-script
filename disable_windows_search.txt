@@ -1,0 +1,2 @@
+goto "C:\Windows\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy"
+rename "SearchHost.exe" to "SearchHost.exe.bak"
