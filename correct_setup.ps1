@@ -1,3 +1,6 @@
+<#disable prefetcher#>
+Set-ItemProperty -Path "HKLM:SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" -name EnablePrefetcher -value 0
+
 <#move start button to correct position#>
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -name TaskbarAl -value 0
 
