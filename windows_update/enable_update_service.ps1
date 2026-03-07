@@ -18,7 +18,7 @@ function rename-mydll {
 rename-mydll -name "WaaSMedicSvc"
 rename-mydll -name "wuaueng"
 
-set-service -name UsoSvc -startuptype Maunal
+set-service -name UsoSvc -startuptype Manual
 set-service -name wuauserv -startuptype Manual
 set-service -name BITS -startuptype Manual
 
